@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <button type="button" class="btn btn-success mb-3">Crear tarea</button>
+            <a href="{{ route('createTask') }}" type="button" class="btn btn-success mb-3">Crear tarea</a>
 
             <table class="table table-striped">
                 <thead>
@@ -23,7 +23,7 @@
                             <td>{{ $task->description }}</td>
                             <td>{{ $task->user->name }}</td>
                             <td>
-                                <button onclick="editTask({{ $task->id }})" type="button" class="btn btn-primary">Editar</button>
+                                <a type="button" class="btn btn-primary">Editar</a>
                             </td>
                         </tr>
                     @endforeach
