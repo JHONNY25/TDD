@@ -13,7 +13,11 @@ class TaskController extends Controller
         $this->task = $task;
     }
 
+    public function index(){
+        return view('home')->with('tasks',$this->getTask());
+    }
+
     public function getTask(){
-        return $this->task->all();
+        return $this->task->with('user')->paginate(3);
     }
 }
