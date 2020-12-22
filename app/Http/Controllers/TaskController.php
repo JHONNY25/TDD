@@ -16,7 +16,6 @@ class TaskController extends Controller
     public function index(){
         return view('home')->with('tasks',$this->getTask());
     }
-
     public function getTask(){
         return $this->task->with('user')->paginate(3);
     }
