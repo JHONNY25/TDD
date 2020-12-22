@@ -9,13 +9,11 @@ use Tests\TestCase;
 
 class RouteHomeTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    /** @test route /home */
     public function testRouteHome()
     {
+        $this->withoutExceptionHandling();
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/home');
