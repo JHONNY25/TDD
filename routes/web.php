@@ -27,4 +27,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/update/task', [TaskController::class, 'viewUpdate'])->name('viewUpdateTask');
     Route::post('/save-task', [TaskController::class, 'store'])->name('saveTask');
     Route::post('/update-task', [TaskController::class, 'update'])->name('updateTask');
+    Route::post('/remove-task', [TaskController::class, 'remove'])->name('removeTask');
 });
