@@ -60,4 +60,20 @@ class CrudTaskTest extends TestCase
         $response->assertSessionHas(['success']);
     }
 
+    /** @test */
+    function testRemoveTask()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = User::factory()->create();
+        $task = Task::factory()->create();
+
+        $response = $this->actingAs($user)->post('/remove-task',[
+            'id' => $task->id,
+        ],['X-CSRF-TOKEN' => csrf_token()]);
+
+        $response->assertStatus(302);
+        $response->assertSessionHas(['success']);
+    }
+
 }
