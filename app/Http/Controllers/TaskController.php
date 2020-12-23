@@ -85,4 +85,11 @@ class TaskController extends Controller
             ->with('users',User::all())
             ->with('task',$task);
     }
+
+    public function remove(Request $request){
+        $this->task->find($request->id)->delete();
+
+        return redirect()->route('home')
+        ->with('success','Se elimino la tarea correctamente.');
+    }
 }
