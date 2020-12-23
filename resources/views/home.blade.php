@@ -23,7 +23,7 @@
                             <td>{{ $task->description }}</td>
                             <td>{{ $task->user->name }}</td>
                             <td>
-                                <a type="button" class="btn btn-primary">Editar</a>
+                                <a href="{{ route('viewUpdateTask',['id' => $task->id]) }}" type="button" class="btn btn-primary">Editar</a>
                             </td>
                         </tr>
                     @endforeach
