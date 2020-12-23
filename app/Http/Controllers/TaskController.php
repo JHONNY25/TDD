@@ -51,4 +51,38 @@ class TaskController extends Controller
 
         return redirect()->back()->with('success','Se creo la tarea correctamente.');
     }
+
+    public function update(Request $request){
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|max:250',
+            'description' => 'required|max:250',
+            'user' => 'required',
+            'id' => 'required'
+        ],[
+            '*.required' => 'El campo es requerido',
+            '*.max' => 'El campo acepta solo :max caracteres',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Task::where('id',$request->id)->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'user_id' => $request->user
+        ]);
+
+        return redirect()->back()->with('success','Se actualizo la tarea correctamente.');
+    }
+
+    public function viewUpdate(Request $request){
+        $task = $this->task->with('user')->where('id',(int)$request->id)->first();
+
+        return view('Task.create')
+            ->with('users',User::all())
+            ->with('task',$task);
+    }
 }
